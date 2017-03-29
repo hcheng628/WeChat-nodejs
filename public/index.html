@@ -5,5 +5,18 @@
   </head>
   <body>
     <p>Welcome to Node Wechat!</p>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var client_socket = io();
+      client_socket.on('connect',()=>{
+        console.log("Client: Connect to Server");
+        console.log("Client Socket: " , client_socket);
+
+      });
+      client_socket.on('disconnect',()=>{
+        console.log("Client: Disconnect from Server");
+        console.log("Client Socket: " , client_socket);
+      });
+    </script>
   </body>
 </html>
