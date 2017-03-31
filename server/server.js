@@ -20,13 +20,24 @@ var nodeServer = nodeApp.listen(nodeApp_PORT, ()=> {
 var io = socketIO.listen(nodeServer);
 
 io.on('connection',(new_socket)=>{
-  new_socket.emit('server_request', { hello: 'From Server to Client'});
   console.log('Server: New User Connected');
-  // console.log("Server Socket: ", new_socket);
-  new_socket.on('client_request',(new_client_message)=>{
-    console.log("Server: Client Message: " + new_client_message);
-  });
+  // new_socket.broadcast.emit('server_request', {
+  //    message: ' ----- '
+  //  });
 
+
+  new_socket.emit('server_request', {
+     from: 'SERVER',
+     message: 'Welcome to Wechat'
+   });
+
+  new_socket.on('client_request',(new_client_message) => {
+    console.log("Server: Client Message: " + JSON.stringify(new_client_message));
+    new_socket.broadcast.emit('server_request', {
+       from: 'SERVER',
+       message: new_client_message.user + ' Just Joined Us.'
+     });
+  });
 });
 
 io.on('disconnect',(new_socket)=>{
