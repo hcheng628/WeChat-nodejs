@@ -20,13 +20,18 @@ var nodeServer = nodeApp.listen(nodeApp_PORT, ()=> {
 var io = socketIO.listen(nodeServer);
 
 io.on('connection',(new_socket)=>{
+  new_socket.emit('server_request', { hello: 'From Server to Client'});
   console.log('Server: New User Connected');
-  console.log("Server Socket: ", new_socket);
+  // console.log("Server Socket: ", new_socket);
+  new_socket.on('client_request',(new_client_message)=>{
+    console.log("Server: Client Message: " + new_client_message);
+  });
+
 });
 
 io.on('disconnect',(new_socket)=>{
   console.log('Server: New User got Disconnected');
-  console.log("Server Socket: ", new_socket);
+  // console.log("Server Socket: ", new_socket);
 });
 
 nodeApp.use(express.static(PUBLIC_PATH));
