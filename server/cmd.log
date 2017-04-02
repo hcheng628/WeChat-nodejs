@@ -1,0 +1,500 @@
+   50  git add .
+   51  git commit -m 'save users'
+   52  git push
+   53  npm i jsonwebtoken --save
+   54  ls
+   55  node server.js 
+   56  node server.js 
+   57  node server.js 
+   58  node server.js 
+   59  node server.js 
+   60  node server.js 
+   61  node server.js 
+   62  node server.js 
+   63  node server.js 
+   64  node server.js 
+   65  node server.js 
+   66  node server.js 
+   67  node server.js 
+   68  node server.js 
+   69  node server.js 
+   70  node server.js 
+   71  node server.js 
+   72  node server.js 
+   73  node server.js 
+   74  node server.js 
+   75  node server.js 
+   76  node server.js 
+   77  node server.js 
+   78  node server.js 
+   79  node server.js 
+   80  node server.js 
+   81  node server.js 
+   82  node server.js 
+   83  node server.js 
+   84  node server.js 
+   85  node server.js 
+   86  git add .
+   87  git commit -m ' Adding Auth'
+   88  git push
+   89  node server.js 
+   90  node server.js 
+   91  node server.js 
+   92  node server.js 
+   93  node server.js 
+   94  node server.js 
+   95  node server.js 
+   96  node server.js 
+   97  node server.js 
+   98  node server.js 
+   99  node server.js 
+  100  node server.js 
+  101  node server.js 
+  102  node server.js 
+  103  node server.js 
+  104  node server.js 
+  105  node server.js 
+  106  node server.js 
+  107  node server.js 
+  108  node server.js 
+  109  node server.js 
+  110  git add .
+  111  git commit -m 'add findmytoken'
+  112  git push
+  113  git push
+  114  node server.js 
+  115  node server.js 
+  116  node server.js 
+  117  node server.js 
+  118  node server.js 
+  119  node server.js 
+  120  node server.js 
+  121  node server.js 
+  122  node server.js 
+  123  node server.js 
+  124  git add .
+  125  git commit - 'get user by token done'
+  126  git push
+  127  git push
+  128  node server.js 
+  129  node server.js 
+  130  node server.js 
+  131  node server.js 
+  132  node server.js 
+  133  node server.js 
+  134  node server.js 
+  135  node server.js 
+  136  node server.js 
+  137  git status
+  138  git add .
+  139  git commit -m 'add middleware for user auth'
+  140  git push
+  141  git status
+  142  eixt
+  143  npm i bcryptjs --save
+  144  cd GitHub/
+  145  ls
+  146  cd node/
+  147  ls
+  148  cd node-execs/
+  149  ls
+  150  cd todo-api/
+  151  ls
+  152  ls
+  153  npm i bcryptjs --save
+  154  ls
+  155  node aplayground/hashing.js 
+  156  node aplayground/hashing.js 
+  157  node aplayground/hashing.js 
+  158  node aplayground/hashing.js 
+  159  node aplayground/hashing.js 
+  160  node aplayground/hashing.js 
+  161  node aplayground/hashing.js 
+  162  node aplayground/hashing.js 
+  163  node aplayground/hashing.js 
+  164  node server.js 
+  165  node server.js 
+  166  git status
+  167  git commit -m 'add password hashing and salt'
+  168  git push
+  169  git add .
+  170  git commit -m 'add password hashing and salt'
+  171  ls
+  172  cd server
+  173  ls
+  174  mocha server.todo.test.js 
+  175  ls
+  176  mocha server.user.test.js 
+  177  mocha server.user.test.js 
+  178  mocha server.user.test.js 
+  179  mocha server.user.test.js 
+  180  mocha server.user.test.js 
+  181  mocha server.user.test.js 
+  182  mocha server.user.test.js 
+  183  mocha server.user.test.js 
+  184  mocha server.user.test.js 
+  185  mocha server.user.test.js 
+  186  mocha server.user.test.js 
+  187  mocha server.user.test.js 
+  188  mocha server.user.test.js 
+  189  mocha server.todos.test.js 
+  190  mocha server.todo.test.js 
+  191  mocha server.todo.test.js 
+  192  mocha server.todo.test.js 
+  193  mocha server.todo.test.js 
+  194  mocha server.todo.test.js 
+  195  mocha server.todo.test.js 
+  196  mocha server.todo.test.js 
+  197  mocha server.todo.test.js 
+  198  mocha server.todo.test.js 
+  199  mocha server.todo.test.js 
+  200  mocha server.user.test.js 
+  201  ls
+  202  ls
+  203  mocha server.user.test.js 
+  204  mocha server.user.test.js 
+  205  mocha server.user.test.js 
+  206  mocha server.user.test.js 
+  207  mocha server.todo.test.js 
+  208  mocha server.todo.test.js 
+  209  mocha server.user.test.js 
+  210  mocha server.user.test.js 
+  211  mocha server.user.test.js 
+  212  git add .
+  213  git commit -m  'add seed for todos and users testing'
+  214  git push
+  215  git status
+  216  git status
+  217  exit
+  218  ls
+  219  cd GitHub/
+  220  ls
+  221  cd node/
+  222  cd node-execs/
+  223  ls
+  224  cd todo-api/
+  225  ls
+  226  ls
+  227  git status
+  228  git pull
+  229  git reset --hard HEAD
+  230  git pull
+  231  ls
+  232  rm node_modules/
+  233  rm -rf node_modules/
+  234  ls
+  235  git status
+  236  ls
+  237  vim .gitignore
+  238  ls
+  239  git status
+  240  ls
+  241  cd server
+  242  ls
+  243  mocha server.user.test.js 
+  244  mocha server.user.test.js 
+  245  mocha server.user.test.js 
+  246  mocha server.user.test.js 
+  247  mocha server.user.test.js 
+  248  npm install
+  249  mocha server.user.test.js 
+  250  mocha server.user.test.js 
+  251  mocha server.user.test.js 
+  252  mocha server.user.test.js 
+  253  mocha server.user.test.js 
+  254  mocha server.user.test.js 
+  255  mocha server.user.test.js 
+  256  mocha server.user.test.js 
+  257  mocha server.user.test.js 
+  258  mocha server.user.test.js 
+  259  mocha server.user.test.js 
+  260  ls
+  261  cd ..
+  262  node server.js 
+  263  mocha server/server.user.test.js 
+  264  mocha server/server.todo.test.js --reporter mochawesome
+  265  git add .
+  266  git commit -m 'get users/me and post /users done'
+  267  git push
+  268  exit
+  269  ls
+  270  cd GitHub/
+  271  ls
+  272  cd node/
+  273  ls
+  274  cd node-execs/
+  275  ls
+  276  cd todo-api/
+  277  ls
+  278  node server.js 
+  279  node server.js 
+  280  ls
+  281  cd mochawesome-reports/
+  282  ls
+  283  ls
+  284  man mochawesome.html 
+  285  open ./mochawesome.html 
+  286  cd ..
+  287  ls
+  288  ls
+  289  ls
+  290  node server.js 
+  291  node server.js 
+  292  node server.js 
+  293  node server.js 
+  294  node server.js 
+  295  node server.js 
+  296  node server.js 
+  297  node server.js 
+  298  node server.js 
+  299  node server.js 
+  300  node server.js 
+  301  node server.js 
+  302  node server.js 
+  303  node server.js 
+  304  node server.js 
+  305  node server.js 
+  306  node server.js 
+  307  node server.js 
+  308  node server.js 
+  309  ls
+  310  node server.js 
+  311  node server.js 
+  312  node server.js 
+  313  ls
+  314  node server.js 
+  315  ls
+  316  ls
+  317  npm run test
+  318  git commit -am 'complete back end services and test cases'
+  319  git status
+  320  git push
+  321  git status
+  322  npm run test
+  323  npm run test
+  324  npm run test
+  325  git commit -am 'complete env config js and json'
+  326  git push
+  327  ls
+  328  cd GitHub/
+  329  lks
+  330  ls
+  331  cd node/
+  332  ls
+  333  cd node-execs/
+  334  ls
+  335  cd todo-api/
+  336  ls
+  337  node server.js 
+  338  node server.js 
+  339  node server.js 
+  340  node server.js 
+  341  node server.js 
+  342  node server.js 
+  343  node server.js 
+  344  node server.js 
+  345  node server.js 
+  346  node server.js 
+  347  node server.js 
+  348  node server.js 
+  349  node server.js 
+  350  node server.js 
+  351  node server.js 
+  352  node server.js 
+  353  node server.js 
+  354  node server.js 
+  355  node server.js 
+  356  node server.js 
+  357  node server.js 
+  358  node server.js 
+  359  node server.js 
+  360  node server.js 
+  361  node server.js 
+  362  node server.js 
+  363  node server.js 
+  364  node server.js 
+  365  ls
+  366  git add .
+  367  git commit -m 'add retrieve user by credientals without signing jwt'
+  368  git push
+  369  git status
+  370  git status
+  371  ls
+  372  node server
+  373  node server
+  374  node server
+  375  node server
+  376  node server
+  377  ls
+  378  ls
+  379  mocha server.user.test.js 
+  380  pwd
+  381  mocha server.user.test.js 
+  382  mocha server.user.test.js 
+  383  mocha server.user.test.js 
+  384  mocha server.user.test.js 
+  385  mocha server.user.test.js 
+  386  mocha server.user.test.js 
+  387  mocha server.user.test.js 
+  388  mocha server.user.test.js 
+  389  mocha server.user.test.js 
+  390  mocha server.user.test.js 
+  391  mocha server.user.test.js 
+  392  mocha server.user.test.js 
+  393  mocha server.user.test.js 
+  394  mocha server.user.test.js 
+  395  mocha server.user.test.js 
+  396  ls
+  397  cd ..
+  398  ls
+  399  npm run test
+  400  git add .
+  401  ls
+  402  git status
+  403  git commit -m 'complete users/login backend and test cases'
+  404  git push
+  405  mocha server.user.test.js 
+  406  mocha server.user.test.js 
+  407  pwd
+  408  cd server
+  409  ls
+  410  mocha server.user.test.js 
+  411  mocha server.user.test.js 
+  412  mocha server.user.test.js 
+  413  mocha server.user.test.js 
+  414  mocha server.user.test.js 
+  415  mocha server.user.test.js 
+  416  mocha server.user.test.js 
+  417  mocha server.user.test.js 
+  418  mocha server.user.test.js 
+  419  mocha server.user.test.js 
+  420  mocha server.user.test.js 
+  421  mocha server.user.test.js 
+  422  mocha server.user.test.js 
+  423  mocha server.user.test.js 
+  424  mocha server.user.test.js 
+  425  git -am 'complete logout and its test cases'
+  426  git -m 'complete logout and its test cases'
+  427  git commit -m 'complete logout and its test cases'
+  428  git push
+  429  ls
+  430  ls
+  431  mocha server.user.test.js 
+  432  ls
+  433  mocha server.todo.test.js 
+  434  mocha server.todo.test.js 
+  435  mocha server.todo.test.js 
+  436  mocha server.todo.test.js 
+  437  mocha server.todo.test.js 
+  438  mocha server.todo.test.js 
+  439  mocha server.todo.test.js 
+  440  mocha server.todo.test.js 
+  441  mocha server.todo.test.js 
+  442  mocha server.todo.test.js 
+  443  mocha server.todo.test.js 
+  444  mocha server.todo.test.js 
+  445  mocha server.todo.test.js 
+  446  mocha server.todo.test.js 
+  447  mocha server.todo.test.js 
+  448  mocha server.todo.test.js 
+  449  mocha server.todo.test.js 
+  450  mocha server.todo.test.js 
+  451  mocha server.todo.test.js 
+  452  mocha server.todo.test.js 
+  453  mocha server.todo.test.js 
+  454  mocha server.todo.test.js 
+  455  mocha server.todo.test.js 
+  456  mocha server.todo.test.js 
+  457  mocha server.todo.test.js 
+  458  mocha server.todo.test.js 
+  459  mocha server.todo.test.js 
+  460  mocha server.todo.test.js 
+  461  mocha server.todo.test.js 
+  462  mocha server.todo.test.js 
+  463  mocha server.todo.test.js 
+  464  mocha server.todo.test.js 
+  465  mocha server.todo.test.js 
+  466  mocha server.todo.test.js 
+  467  mocha server.todo.test.js 
+  468  mocha server.todo.test.js 
+  469  mocha server.todo.test.js 
+  470  ls
+  471  cd ..
+  472  ls
+  473  cd config/
+  474  ls
+  475  node config.js
+  476  node config.js
+  477  node config.js
+  478  node config.js
+  479  node config.js
+  480  node config.js
+  481  node config.js
+  482  node config.js
+  483  node config.js
+  484  node config.js
+  485  node config.js
+  486  node config.js
+  487  node config.js
+  488  node config.js
+  489  node config.js
+  490  node config.js
+  491  node config.js
+  492  node config.js
+  493  node config.js
+  494  node config.js
+  495  node config.js
+  496  node config.js
+  497  node config.js
+  498  node config.js
+  499  cd GitHub/
+  500  ls
+  501  cd node/
+  502  ls
+  503  cd node-execs/
+  504  ls
+  505  cd node-wechat-app/
+  506  ls
+  507  cd server/
+  508  ls
+  509  cd utils/
+  510  ls
+  511  mocha message.test.js 
+  512  mocha message.test.js 
+  513  cd ..
+  514  ls
+  515  node server.js 
+  516  node server.js 
+  517  node server.js 
+  518  node server.js 
+  519  node server.js 
+  520  node server.js 
+  521  node server.js 
+  522  node server.js 
+  523  node server.js 
+  524  node server.js 
+  525  node server.js 
+  526  node server.js 
+  527  node server.js 
+  528  node server.js 
+  529  node server.js 
+  530  node server.js 
+  531  node server.js 
+  532  node server.js 
+  533  node server.js 
+  534  node server.js 
+  535  node server.js 
+  536  node server.js 
+  537  node server.js 
+  538  node server.js 
+  539  node server.js 
+  540  node server.js 
+  541  node server.js 
+  542  node server.js 
+  543  node server.js 
+  544  node server.js ]
+  545  node server.js ]
+  546  node server.js ]
+  547  history
+  548  pwd
+  549  history > cmd.log

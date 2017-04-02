@@ -4,6 +4,8 @@ const fs = require('fs');
 const socketIO = require('socket.io');
 const http = require('http');
 
+var {generateMessage} = require('./utils/message');
+
 const PUBLIC_PATH = path.join(__dirname, '../public/');
 
 const wechat_HOMEPAGE = '/index.html';
@@ -21,23 +23,22 @@ var io = socketIO.listen(nodeServer);
 
 io.on('connection',(new_socket)=>{
   console.log('Server: New User Connected');
-  // new_socket.broadcast.emit('server_request', {
-  //    message: ' ----- '
-  //  });
+  new_socket.emit('server_notification', generateMessage('SERVER','Welcome to Wechat'));
 
+  // new_socket.on('new_user', (new_client_message) => {
+  //   new_socket.broadcast.emit('new_user', generateMessage('SERVER', new_client_message.user + ' Just Joined Us.'));
+  // });
 
-  new_socket.emit('server_request', {
-     from: 'SERVER',
-     message: 'Welcome to Wechat'
-   });
-
-  new_socket.on('client_request',(new_client_message) => {
-    console.log("Server: Client Message: " + JSON.stringify(new_client_message));
-    new_socket.broadcast.emit('server_request', {
-       from: 'SERVER',
-       message: new_client_message.user + ' Just Joined Us.'
-     });
+  new_socket.on('new_location', (new_client_location) => {
+    console.log("Server: Client Location: " + JSON.stringify(new_client_message));
   });
+
+  new_socket.on('new_message', (new_client_message, callback) => {
+    console.log("Server: new_message " + JSON.stringify(new_client_message));
+    io.emit('new_message',new_client_message);
+    callback('new_message: Server 200');
+  });
+
 });
 
 io.on('disconnect',(new_socket)=>{
@@ -46,6 +47,11 @@ io.on('disconnect',(new_socket)=>{
 });
 
 nodeApp.use(express.static(PUBLIC_PATH));
+
+module.exports = {
+  nodeApp
+}
+
 // nodeApp.get(wechat_HOMEPAGE,(request, response) => {
 //   fs.readFile(PUBLIC_PATH + 'index.html', 'utf-8', (err, data)=>{
 //     // console.log(PUBLIC_PATH + 'index.html');
@@ -57,7 +63,3 @@ nodeApp.use(express.static(PUBLIC_PATH));
 // nodeApp.listen(nodeApp_PORT, ()=>{
 //   console.log(`Node Application Up n' Running @ ${nodeApp_PORT} ......`);
 // });
-
-module.exports = {
-  nodeApp
-}
