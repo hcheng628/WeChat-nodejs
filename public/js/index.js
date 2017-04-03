@@ -85,7 +85,7 @@ $('#btn-send-location').on('click',function(event){
         la: crd.latitude,
         lo: crd.longitude
     }, function(serverStatus){
-      alert('Client new_location: ' + serverStatus);
+      // alert('Client new_location: ' + serverStatus);
     });
   }else{
     return alert('Geo Location Unavailable');
