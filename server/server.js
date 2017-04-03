@@ -4,7 +4,7 @@ const fs = require('fs');
 const socketIO = require('socket.io');
 const http = require('http');
 
-var {generateMessage} = require('./utils/message');
+var {generateMessage, generateLocation} = require('./utils/message');
 
 const PUBLIC_PATH = path.join(__dirname, '../public/');
 
@@ -29,8 +29,10 @@ io.on('connection',(new_socket)=>{
   //   new_socket.broadcast.emit('new_user', generateMessage('SERVER', new_client_message.user + ' Just Joined Us.'));
   // });
 
-  new_socket.on('new_location', (new_client_location) => {
-    console.log("Server: Client Location: " + JSON.stringify(new_client_message));
+  new_socket.on('new_location', (new_client_location, callback) => {
+    console.log("Server: Client Location: " + JSON.stringify(new_client_location));
+    io.emit('new_location', generateLocation(new_client_location.from, new_client_location.la, new_client_location.lo));
+    callback('new_location: Server 200');
   });
 
   new_socket.on('new_message', (new_client_message, callback) => {
