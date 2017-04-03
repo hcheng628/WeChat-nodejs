@@ -46,11 +46,12 @@ client_socket.on('disconnect',function(){
 
 // Custom Socket Event Listener   --- Start
 client_socket.on('server_notification',function(server_notification_response){
-  console.log('Client Received: From: ' + server_notification_response.from + ' Text: ' + server_notification_response.text );
+  // console.log('Client Received: From: ' + server_notification_response.from + ' Text: ' + server_notification_response.text );
+  messageList.append(`<li><span>${server_notification_response.from} : ${server_notification_response.text}</span></li>`);
 });
 
 client_socket.on('new_location',function(new_server_location_response){
-  console.log('Client Received: From: ' + new_server_location_response.from + ' Geo URL: ' + new_server_location_response.locationURL );
+  // console.log('Client Received: From: ' + new_server_location_response.from + ' Geo URL: ' + new_server_location_response.locationURL );
   messageList.append(`<li><a target="_blank" href="${new_server_location_response.locationURL}"><span>${new_server_location_response.from} Geo Location</span></a></li>`);
 });
 
@@ -68,23 +69,29 @@ client_socket.on('new_message', function(new_message){
 
 $('#message-form').on('submit',function(event){
   // alert($('#input_message').val());
+  var textBox = $('#input_message');
   event.preventDefault();
   client_socket.emit('new_message',{
     from: 'CLIENT',
-    text: $('#input_message').val()
+    text: textBox.val()
   },function(serverStatus){
+    textBox.val('');
     // alert('Client new_message: ' + serverStatus);
     // messageList.append(`<li><a href="."><span>${$('#input_message').val()}</span></a></li>`);
   });
 });
 
 $('#btn-send-location').on('click',function(event){
+  var geoButton = $('#btn-send-location');
+  // console.log(geoButton);
   if(crd){
+    geoButton.attr('disabled', true).text('Sending......');
     client_socket.emit('new_location',{
         from: 'CLIENT',
         la: crd.latitude,
         lo: crd.longitude
     }, function(serverStatus){
+      geoButton.attr('disabled', false).text('Share Geo Location');
       // alert('Client new_location: ' + serverStatus);
     });
   }else{
