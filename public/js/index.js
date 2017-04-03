@@ -3,6 +3,15 @@ var messageList = $('#message-list');
 
 var crd = null;
 
+function autoScroll() {
+    var list = $('#message-list');
+    var lastLi = list.children('li:last-child');
+    if (parseInt(list.prop('clientHeight')) + parseInt(list.prop('scrollTop')) + parseInt(lastLi.innerHeight()) + parseInt(lastLi.prev().innerHeight()) >= parseInt(list.prop('scrollHeight'))) {
+        // console.log('Yes: ' + scrollNumA + ' Condition Value: ' + scrollNumB);
+        list.scrollTop(parseInt(list.prop('scrollHeight')));
+    }
+}
+
 if ('geolocation' in navigator) {
     console.log('Current Device Support Geo Location Service');
 
@@ -49,12 +58,13 @@ client_socket.on('server_notification', function(server_notification_response) {
     // console.log('Client Received: From: ' + server_notification_response.from + ' Text: ' + server_notification_response.text );
     var formatedTime = moment(server_notification_response.createdAt).format('MMM Do YYYY, h:mm:ss a');
     var template = $('#notification-template').html();
-    var html  = Mustache.render(template,{
-      from: server_notification_response.from,
-      text: server_notification_response.text,
-      createdAt: formatedTime
+    var html = Mustache.render(template, {
+        from: server_notification_response.from,
+        text: server_notification_response.text,
+        createdAt: formatedTime
     });
     messageList.append(html);
+    autoScroll();
     /*
     var formatedTime = moment(server_notification_response.createdAt).format('h:mm a');
     messageList.append(`<li><span>${server_notification_response.from} ${formatedTime}: ${server_notification_response.text}</span></li>`);
@@ -65,12 +75,13 @@ client_socket.on('new_location', function(new_server_location_response) {
     // console.log('Client Received: From: ' + new_server_location_response.from + ' Geo URL: ' + new_server_location_response.locationURL );
     var formatedTime = moment(new_server_location_response.createdAt).format('h:mm a');
     var template = $('#location-template').html();
-    var html = Mustache.render(template,{
-      from: new_server_location_response.from,
-      locationURL: new_server_location_response.locationURL,
-      createdAt: formatedTime
+    var html = Mustache.render(template, {
+        from: new_server_location_response.from,
+        locationURL: new_server_location_response.locationURL,
+        createdAt: formatedTime
     });
     messageList.append(html);
+    autoScroll();
     /*
     var formatedTime = moment(new_server_location_response.createdAt).format('h:mm a');
     messageList.append(`<li><span>${new_server_location_response.from} ${formatedTime}</span> : <a target="_blank" href="${new_server_location_response.locationURL}">Geo Location</a></li>`);
@@ -80,12 +91,13 @@ client_socket.on('new_location', function(new_server_location_response) {
 client_socket.on('new_message', function(new_message) {
     var formatedTime = moment(new_message.createdAt).format('h:mm a');
     var template = $('#message-template').html();
-    var html  = Mustache.render(template,{
-      from: new_message.from,
-      text: new_message.text,
-      createdAt: formatedTime
+    var html = Mustache.render(template, {
+        from: new_message.from,
+        text: new_message.text,
+        createdAt: formatedTime
     });
     messageList.append(html);
+    autoScroll();
     // console.log('Client Received: From: ' + new_message.from + ' Geo URL: ' + new_message.text );
     /*
     var formatedTime = moment(new_message.createdAt).format('h:mm a');
