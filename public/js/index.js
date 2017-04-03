@@ -73,7 +73,7 @@ $('#message-form').on('submit',function(event){
     from: 'CLIENT',
     text: $('#input_message').val()
   },function(serverStatus){
-    alert('Client new_message: ' + serverStatus);
+    // alert('Client new_message: ' + serverStatus);
     // messageList.append(`<li><a href="."><span>${$('#input_message').val()}</span></a></li>`);
   });
 });
