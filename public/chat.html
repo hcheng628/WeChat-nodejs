@@ -4,14 +4,21 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/styles.css">
-    <title>Chat Room</title>
+    <title> {Chat} Room</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
 
 <body class="chat">
     <div class="chat__sidebar">
         <h3>People</h3>
-        <div id="users"></div>
+
+        <div id="users">
+          <ol>
+            <li>Cheng</li>
+            <li>Leo</li>
+          </ol>
+        </div>
+
     </div>
 
     <div class="chat__main">
@@ -70,6 +77,7 @@
     <script src="./js/libs/jquery-3.2.0.min.js"></script>
     <script src="./js/libs/moment.js"></script>
     <script src="./js/libs/mustache.js"></script>
+    <script src="./js/libs/paramhelper.js"></script>
     <script src="./js/chat.js"></script>
 </body>
 

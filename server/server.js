@@ -3,11 +3,9 @@ const express = require('express');
 const fs = require('fs');
 const socketIO = require('socket.io');
 const http = require('http');
-
-var {
-    generateMessage,
-    generateLocation
-} = require('./utils/message');
+const {Users} = require('./utils/users');
+var {generateMessage,generateLocation} = require('./utils/message');
+var {guid} = require('./utils/guid');
 
 const PUBLIC_PATH = path.join(__dirname, '../public/');
 
@@ -17,7 +15,7 @@ const nodeApp_PORT = process.env.PORT || 3000;
 // console.log(__dirname + '/../public');
 console.log(PUBLIC_PATH);
 
-
+var users = new Users();
 var nodeApp = express();
 var nodeServer = nodeApp.listen(nodeApp_PORT, () => {
     console.log(`Node Application Up n' Running @ ${nodeApp_PORT} ......`);
@@ -28,13 +26,23 @@ io.on('connection', (new_socket) => {
     console.log('Server: New User Connected');
     new_socket.emit('server_notification', generateMessage('SERVER', 'Welcome to Wechat'));
 
+    new_socket.on('join', (user_params, callback)=>{
+        // console.log("Server: User Params: " + JSON.stringify(user_params));
+        if(user_params.user_name == '' || user_params.room_name == ''){
+          callback({error: 'Wrong Params'});
+        }
+        callback();
+        users.addUser(guid(), user_params.user_name, user_params.room_name);
+        new_socket.join(user_params.room_name);
+    });
+
     // new_socket.on('new_user', (new_client_message) => {
     //   new_socket.broadcast.emit('new_user', generateMessage('SERVER', new_client_message.user + ' Just Joined Us.'));
     // });
 
     new_socket.on('new_location', (new_client_location, callback) => {
-        console.log("Server: Client Location: " + JSON.stringify(new_client_location));
-        io.emit('new_location', generateLocation(new_client_location.from, new_client_location.la, new_client_location.lo));
+        // console.log("Server: Client Location: " + JSON.stringify(new_client_location));
+        io.().emit('new_location', generateLocation(new_client_location.from, new_client_location.la, new_client_location.lo));
         callback('new_location: Server 200');
     });
 

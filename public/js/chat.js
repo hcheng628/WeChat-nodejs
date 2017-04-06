@@ -1,6 +1,5 @@
 var client_socket = io();
 var messageList = $('#message-list');
-
 var crd = null;
 
 function autoScroll() {
@@ -41,6 +40,17 @@ if ('geolocation' in navigator) {
 
 client_socket.on('connect', function() {
     console.log("Client: Connect to Server");
+    /*
+    Once Connected, send over the User Obj
+    */
+    var params = paramStrToObject(window.location.search.toString());
+    client_socket.emit('join', params, function(err){
+      if(err){
+        window.location.href = '/';
+      }else{
+        console.log("Client: Join Successfully");
+      }
+    });
     // client_socket.emit('new_user', {
     //   from: 'CLIENT',
     //   text: 'Hello Everyone!',
@@ -54,6 +64,8 @@ client_socket.on('disconnect', function() {
 });
 
 // Custom Socket Event Listener   --- Start
+
+
 client_socket.on('server_notification', function(server_notification_response) {
     // console.log('Client Received: From: ' + server_notification_response.from + ' Text: ' + server_notification_response.text );
     var formatedTime = moment(server_notification_response.createdAt).format('MMM Do YYYY, h:mm:ss a');
