@@ -52,7 +52,9 @@ client_socket.on('connect', function() {
             // console.log("Client: Join Successfully");
             currentUser = params;
             document.title = 'Talking in ' + currentUser.room_name;
-            history.replaceState('', 'Topic: ' + currentUser.room_name, document.location.href.substring(0, document.location.href.indexOf("?")));
+            // history.replaceState('', 'Topic: ' + currentUser.room_name, document.location.href.substring(0, (document.location.href.indexOf("?") - 5 )));
+            history.replaceState('', '' + currentUser.room_name, document.location.href.substring(0, (document.location.href.indexOf("?") - 9 )));
+
         }
     });
 });
