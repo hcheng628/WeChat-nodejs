@@ -13,7 +13,7 @@ const wechat_HOMEPAGE = '/index.html';
 
 const nodeApp_PORT = process.env.PORT || 3000;
 // console.log(__dirname + '/../public');
-console.log(PUBLIC_PATH);
+console.log('PUBLIC_PATH: ' + PUBLIC_PATH);
 
 var users = new Users();
 var nodeApp = express();
@@ -24,7 +24,7 @@ var io = socketIO.listen(nodeServer);
 
 io.on('connection', (new_socket) => {
     console.log('Server: New User Connected');
-    new_socket.emit('server_notification', generateMessage('SERVER', 'Welcome to Wechat'));
+    new_socket.emit('server_notification', generateMessage('WeChat-NodeJS-beta', 'Welcome to Wechat'));
 
     new_socket.on('join', (user_params, callback)=>{
         // console.log("Server: User Params: " + JSON.stringify(user_params));
@@ -32,8 +32,15 @@ io.on('connection', (new_socket) => {
           callback({error: 'Wrong Params'});
         }
         callback();
-        users.addUser(guid(), user_params.user_name, user_params.room_name);
-        new_socket.join(user_params.room_name);
+        // console.log("Socket ID: " + new_socket.id);
+        // before adding, remove it based on socket id
+        users.removeUser(new_socket.id);
+        if(new_socket.id != '' && user_params.user_name != '' && user_params.room_name != ''){
+          users.addUser(new_socket.id.toString(), user_params.user_name, user_params.room_name);
+          new_socket.join(user_params.room_name);
+          io.to(user_params.room_name).emit('update_userlist', users.getUserListByRoom(user_params.room_name));
+        }
+        // console.log('Join Checking: Users List', JSON.stringify(users,undefined,2));
     });
 
     // new_socket.on('new_user', (new_client_message) => {
@@ -42,21 +49,33 @@ io.on('connection', (new_socket) => {
 
     new_socket.on('new_location', (new_client_location, callback) => {
         // console.log("Server: Client Location: " + JSON.stringify(new_client_location));
-        io.().emit('new_location', generateLocation(new_client_location.from, new_client_location.la, new_client_location.lo));
-        callback('new_location: Server 200');
+        var thisUser = users.getUser(new_socket.id);
+        if(thisUser){
+          io.to(thisUser.userRoom).emit('new_location', generateLocation(new_client_location.from, new_client_location.la, new_client_location.lo));
+          callback('new_location: Server 200');
+        }
     });
 
     new_socket.on('new_message', (new_client_message, callback) => {
-        console.log("Server: new_message " + JSON.stringify(new_client_message));
-        io.emit('new_message', new_client_message);
-        callback('new_message: Server 200');
+        var thisUser = users.getUser(new_socket.id);
+        if(thisUser){
+          // console.log("Server: new_message " + JSON.stringify(new_client_message));
+          io.to(thisUser.userRoom).emit('new_message', new_client_message);
+          callback('new_message: Server 200');
+        }
     });
 
-});
-
-io.on('disconnect', (new_socket) => {
-    console.log('Server: New User got Disconnected');
-    // console.log("Server Socket: ", new_socket);
+    new_socket.on('disconnect', () => {
+        // console.log('Server:' + removedUser.userName + ' Disconnected SocketID: ' + new_socket.id.toString());
+        // console.log('Server Before Leave Checking: Users List', JSON.stringify(users,undefined,2));
+        console.log('Server: Disconnected SocketID: ' + new_socket.id.toString());
+        var removedUser = users.removeUser(new_socket.id.toString());
+        // console.log('Server Leave Checking: Users List', JSON.stringify(removedUser,undefined,2));
+        if(removedUser){
+          io.to(removedUser.userRoom).emit('update_userlist', users.getUserListByRoom(removedUser.userRoom));
+        }
+        // console.log('Server After Leave Checking: Users List', JSON.stringify(users,undefined,2));
+    });
 });
 
 nodeApp.use(express.static(PUBLIC_PATH));

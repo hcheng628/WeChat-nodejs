@@ -37,7 +37,20 @@ describe('Test Users Class', ()=>{
     expect(users.userList.length).toBe(3);
   });
 
-  it('should remove a user', ()=>{
+  it('should get Users by Room test', ()=>{
+    var users = new Users();
+    users.addUser('1','ThinkPad User', 'ThinkPad');
+    users.addUser('3','Mac User', 'Apple');
+    users.addUser('5','System 76 User', 'Linux');
+    users.addUser('7','Purios', 'Linux');
+
+    expect(users.userList.length).toBe(4);
+    var userListByRoom = users.getUserListByRoom('Linux');
+    // console.log('Length: ' + users.userList.length);
+    expect(userListByRoom.length).toBe(2);
+  });
+
+  it('should remove a user test', ()=>{
     var users = new Users();
     users.addUser('1','ThinkPad User', 'ThinkPad');
     users.addUser('3','Mac User', 'Apple');

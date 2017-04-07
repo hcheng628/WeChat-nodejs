@@ -4,20 +4,23 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/styles.css">
-    <title> {Chat} Room</title>
+    <title>Joining Room</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
 
 <body class="chat">
-    <div class="chat__sidebar">
-        <h3>People</h3>
+    <div id="chat-sidebar" class="chat__sidebar">
 
+      <script id="room-template" type="text/template">
+        <h3>{{room_name}}</h3>
         <div id="users">
-          <ol>
-            <li>Cheng</li>
-            <li>Leo</li>
+          <ol id="user-list">
+            {{#room_user_list}}
+            <li>{{userName}}</li>
+            {{/room_user_list}}
           </ol>
         </div>
+      </script>
 
     </div>
 
@@ -78,7 +81,9 @@
     <script src="./js/libs/moment.js"></script>
     <script src="./js/libs/mustache.js"></script>
     <script src="./js/libs/paramhelper.js"></script>
+    <!-- <script src="./js/libs/enhancement.js"></script> -->
     <script src="./js/chat.js"></script>
+
 </body>
 
 </html>

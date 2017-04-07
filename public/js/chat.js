@@ -1,6 +1,11 @@
 var client_socket = io();
 var messageList = $('#message-list');
+var userList = $('#user-list');
+var chatSideBar = $('#chat-sidebar');
 var crd = null;
+var update_userlist_template = $('#room-template').html();
+
+var currentUser = {};
 
 function autoScroll() {
     var list = $('#message-list');
@@ -31,31 +36,25 @@ if ('geolocation' in navigator) {
     function geo_error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
     }
-
     navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options);
-    console.log(crd);
+    // console.log(crd);
 } else {
     alert('Current Device does NOT Support Geo Location Service');
 }
 
 client_socket.on('connect', function() {
     console.log("Client: Connect to Server");
-    /*
-    Once Connected, send over the User Obj
-    */
     var params = paramStrToObject(window.location.search.toString());
-    client_socket.emit('join', params, function(err){
-      if(err){
-        window.location.href = '/';
-      }else{
-        console.log("Client: Join Successfully");
-      }
+    client_socket.emit('join', params, function(err) {
+        if (err) {
+            window.location.href = '/';
+        } else {
+            // console.log("Client: Join Successfully");
+            currentUser = params;
+            document.title = 'Talking in ' + currentUser.room_name;
+            history.replaceState('', 'Topic: ' + currentUser.room_name, document.location.href.substring(0, document.location.href.indexOf("?")));
+        }
     });
-    // client_socket.emit('new_user', {
-    //   from: 'CLIENT',
-    //   text: 'Hello Everyone!',
-    //   user: 'Cheng'
-    // });
 });
 
 client_socket.on('disconnect', function() {
@@ -116,7 +115,37 @@ client_socket.on('new_message', function(new_message) {
     messageList.append(`<li><span>${new_message.from} ${formatedTime}: ${new_message.text}</span></li>`);
     */
     // callback('new_message: Client 200');
-})
+});
+
+// userList = $('#user-list');
+// chatSideBar = $('#chat-sidebar');
+/*
+<div id="chat-sidebar" class="chat__sidebar">
+  <script id="room-template" type="text/template">
+    <h3>{{room_name}}</h3>
+    <div id="users">
+      <ol id="user-list">
+      </ol>
+    </div>
+  </script>
+</div>
+*/
+
+client_socket.on('update_userlist', function(updatedUserList) {
+    // console.log('Client update_userlist Triggered', updatedUserList);
+    chatSideBar.html('');
+
+    console.log('Client update_userlist template', update_userlist_template);
+    var html = Mustache.render(update_userlist_template,{
+      room_name: currentUser.room_name,
+      room_user_list: updatedUserList
+    });
+    // console.log('Client html template', html);
+    //$('#room-template').empty();
+
+    chatSideBar.append(html);
+});
+
 
 // client_socket.on('new_user', function(new_user){
 //   console.log('Client Received: From: ' + new_user.from + ' Text: ' + new_user.text );
@@ -132,7 +161,7 @@ $('#message-form').on('submit', function(event) {
         return;
     }
     client_socket.emit('new_message', {
-        from: 'CLIENT',
+        from: currentUser.user_name,
         text: textBox.val()
     }, function(serverStatus) {
         textBox.val('');
@@ -147,7 +176,7 @@ $('#btn-send-location').on('click', function(event) {
     if (crd) {
         geoButton.attr('disabled', true).text('Sending......');
         client_socket.emit('new_location', {
-            from: 'CLIENT',
+            from: currentUser.user_name,
             la: crd.latitude,
             lo: crd.longitude
         }, function(serverStatus) {

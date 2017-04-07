@@ -12,10 +12,13 @@ class Users {
 
   removeUser(id){
     var removeUser = this.getUser(id);
+    // console.log('----- Before:' + JSON.stringify(this.userList,undefined,2));
     if(removeUser){
       this.userList = this.userList.filter((element)=>{
+        // console.log('----- Element:' + JSON.stringify(element,undefined,2));
         return element.userId !== id;
       });
+      // console.log('----- After:' + JSON.stringify(this.userList,undefined,2));
       return removeUser;
     }else{
       return null;
@@ -40,13 +43,22 @@ class Users {
   getUserList(){
     return this.userList;
   }
+
+  getUserListByRoom(inRoomName){
+    var userListByRoom = [];
+    if(inRoomName != null && inRoomName != '' && inRoomName != undefined){
+      userListByRoom = this.userList.filter((element)=>{
+        // console.log('----- Element:' + JSON.stringify(element,undefined,2));
+        return element.userRoom == inRoomName;
+      });
+      // console.log('----- After:' + JSON.stringify(this.userList,undefined,2));
+      return userListByRoom;
+    }else{
+      return null;
+    }
+  }
 }
 
 module.exports = {
   Users
 }
-
-
-// Add Users
-// RemoveUser
-// UserDescription

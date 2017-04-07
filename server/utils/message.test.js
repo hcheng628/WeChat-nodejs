@@ -24,4 +24,4 @@ describe('Test Generate Loaction',()=>{
     expect(location.createdAt).toExist('createdAt');
     done();
   })
-})
+});
