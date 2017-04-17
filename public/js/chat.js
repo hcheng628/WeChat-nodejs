@@ -84,6 +84,7 @@ client_socket.on('server_notification', function(server_notification_response) {
     */
 });
 
+
 client_socket.on('new_location', function(new_server_location_response) {
     // console.log('Client Received: From: ' + new_server_location_response.from + ' Geo URL: ' + new_server_location_response.locationURL );
     var formatedTime = moment(new_server_location_response.createdAt).format('h:mm a');
@@ -91,6 +92,8 @@ client_socket.on('new_location', function(new_server_location_response) {
     var html = Mustache.render(template, {
         from: new_server_location_response.from,
         locationURL: new_server_location_response.locationURL,
+        gmapsAPIKEY: 'AIzaSyCJfDEwdIb-kK69Vk_1aXXeEMrBKkaUTs4',
+        locationGEO: new_server_location_response.locationGEO,
         createdAt: formatedTime
     });
     messageList.append(html);
@@ -137,7 +140,7 @@ client_socket.on('update_userlist', function(updatedUserList) {
     // console.log('Client update_userlist Triggered', updatedUserList);
     chatSideBar.html('');
 
-    console.log('Client update_userlist template', update_userlist_template);
+    // console.log('Client update_userlist template', update_userlist_template);
     var html = Mustache.render(update_userlist_template,{
       room_name: currentUser.room_name,
       room_user_list: updatedUserList
@@ -153,6 +156,7 @@ client_socket.on('update_userlist', function(updatedUserList) {
 //   console.log('Client Received: From: ' + new_user.from + ' Text: ' + new_user.text );
 // });
 // Custom Socket Event Listener   --- End
+
 
 
 $('#message-form').on('submit', function(event) {

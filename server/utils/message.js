@@ -12,6 +12,7 @@ var generateLocation = function ( from, la, lo){
   return {
     from,
     locationURL: `https://www.google.com/maps/?q=${la},${lo}`,
+    locationGEO: `${la},${lo}`,
     createdAt: moment().valueOf()
   }
 }

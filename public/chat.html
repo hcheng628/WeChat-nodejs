@@ -25,7 +25,8 @@
     </div>
 
     <div class="chat__main">
-        <ol id="message-list" class="chat__messages"></ol>
+        <ol id="message-list" class="chat__messages">
+        </ol>
         <div class="chat__footer">
             <form id="message-form">
                 <input id="input_message" type="text" placeholder="New Message" autofocus="1" autocomplete="off" />
@@ -37,6 +38,13 @@
             <button id="btn-send-location" type="button">Share Geo Location</button>
         </div>
     </div>
+
+    <!-- -->
+    <script id="gmap-template" type="text/template">
+
+    </script>
+
+
 
     <script id="message-template" type="text/template">
         <li class="message">
@@ -54,10 +62,12 @@
         <li class="message">
             <div class="message__title">
                 <h4>{{from}}</h4>
-                <span>{{createdAt}}</span>
+                <span>Current Location {{createdAt}}</span>
             </div>
             <div class="message__body" style="background-color: # ">
-                <a target="_blank" href="{{locationURL}}">My Current Location</a>
+                <!--  <a target="_blank" href="{{locationURL}}"></a> -->
+                <iframe id="map" width="300" height="225" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?key={{gmapsAPIKEY}}&center={{locationGEO}}&zoom=18" allowfullscreen>
+                </iframe>
             </div>
         </li>
     </script>
@@ -81,7 +91,6 @@
     <script src="./js/libs/moment.js"></script>
     <script src="./js/libs/mustache.js"></script>
     <script src="./js/libs/paramhelper.js"></script>
-    <!-- <script src="./js/libs/enhancement.js"></script> -->
     <script src="./js/chat.js"></script>
 
 </body>
